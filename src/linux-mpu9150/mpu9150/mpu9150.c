@@ -198,7 +198,7 @@ void mpu9150_set_accel_cal(caldata_t *cal)
 			printf("%d : %d\n", accel_cal_data.range[i], accel_cal_data.offset[i]);
 	}
 
-	mpu_set_accel_bias(bias);
+	mpu_set_accel_bias_6500_reg(bias);
 
 	use_accel_cal = 1;
 }

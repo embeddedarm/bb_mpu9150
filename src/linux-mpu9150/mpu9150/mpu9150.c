@@ -29,6 +29,17 @@
 #include "inv_mpu_dmp_motion_driver.h"
 #include "mpu9150.h"
 
+#if defined MPU9150
+#ifndef MPU6050
+#define MPU6050
+#endif                          /* #ifndef MPU6050 */
+#elif defined MPU9250           /* #if defined MPU9150 */
+#ifndef MPU6500
+#define MPU6500
+#endif                          /* #ifndef MPU6500 */
+#endif				/* #if defined MPU9250 */
+
+
 static int data_ready();
 static void calibrate_data(mpudata_t *mpu);
 static void tilt_compensate(quaternion_t magQ, quaternion_t unfusedQ);
@@ -198,7 +209,11 @@ void mpu9150_set_accel_cal(caldata_t *cal)
 			printf("%d : %d\n", accel_cal_data.range[i], accel_cal_data.offset[i]);
 	}
 
-	mpu_set_accel_bias(bias);
+#ifdef MPU6500
+	mpu_set_accel_bias_6500_reg(bias);
+#elif MPU6050
+	mpu_set_accel_bias_6050_reg(bias);
+#endif
 
 	use_accel_cal = 1;
 }

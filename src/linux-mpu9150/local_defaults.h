@@ -27,6 +27,7 @@
 // To avoid having to pass the same command line switches when running
 // the test apps, you can specify the defaults for your platform here.
 
+#ifndef DEFAULT_I2C_BUS
 // RPi I2C bus 
 #define DEFAULT_I2C_BUS 1
 
@@ -35,13 +36,17 @@
 
 // Gumstix Duovero
 // #define DEFAULT_I2C_BUS 2
+#endif
 
 
 // platform independent
-
+#ifndef DEFAULT_SAMPLE_RATE_HZ
 #define DEFAULT_SAMPLE_RATE_HZ	10
+#endif
 
+#ifndef DEFAULT_YAW_MIX_FACTOR
 #define DEFAULT_YAW_MIX_FACTOR 4
+#endif
 
 #endif /* LOCAL_DEFAULTS_H */
 
